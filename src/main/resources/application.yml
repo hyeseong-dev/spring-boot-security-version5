@@ -13,6 +13,17 @@ spring:
     url: jdbc:mysql://localhost:3306/security1?serverTimezone=Asia/Seoul
     username: cos
     password: cos1234
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: 25275652909-gq1qv0t0k6i17ib9kee2srl7aipkb6hm.apps.googleusercontent.com
+            client-secret: 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
+            scope:
+              - email
+              - profile
+
 
   mvc:
     view:
@@ -25,3 +36,10 @@ spring:
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
     show-sql: true
+
+logging:
+  level:
+    org:
+      springframework:
+        security: DEBUG
+
