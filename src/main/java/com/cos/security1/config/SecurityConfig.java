@@ -23,6 +23,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private PrincipalOauth2UserService principalOauth2UserService;
+
     // 해당 메서드의 리턴되는 객체를 IoC로 등록함.
     @Bean
     public BCryptPasswordEncoder passwordEncoder()

@@ -20,14 +20,37 @@ import java.util.Map;
 public class PrincipalDetails implements UserDetails, OAuth2User {
 
     private User user; // 콤포지션
+    private Map<String, Object> attributes;
 
+    // 일반 로그인
     public PrincipalDetails(User user){
         this.user = user;
     }
 
+    // oAuth 로그인
+    public PrincipalDetails(User user, Map<String, Object> attributes){
+        this.user = user;
+        this.attributes = attributes;
+
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    @Override
+    public String getUsername() {
+        return user.getUsername();
+    }
+
+    @Override
+    public String getPassword() {
+        return user.getPassword();
+    }
+
     @Override
     public Map<String, Object> getAttributes() {
-        return null;
+        return attributes;
     }
 
     // 해당 User의 권한을 리턴하는 곳!!
@@ -43,15 +66,6 @@ public class PrincipalDetails implements UserDetails, OAuth2User {
         return collect;
     }
 
-    @Override
-    public String getPassword() {
-        return user.getPassword();
-    }
-
-    @Override
-    public String getUsername() {
-        return user.getUsername();
-    }
 
     @Override
     public boolean isAccountNonExpired() {
